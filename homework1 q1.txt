@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    
+    char choosenFile[100];
+    int TeamId;
+    char MatchScore[100];
+    int TeamNumbers = 0;
+    
+    printf("Enter txt file name:\n");
+    scanf("%s", choosenFile);
+
+    FILE *file = fopen(choosenFile, "r");
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 0 ;
+    }
+
+    //Finds how many teams do we have
+    while (fscanf(file, "%d %s", &TeamId, MatchScore) != EOF) {
+        TeamNumbers++;
+    }
+
+    printf("There are %d teams in total.\n", TeamNumbers);
+
+    //Cursor goes to the begining
+    fseek(file, 0, SEEK_SET);
+
+    // Calculate the score of the teams
+    while (fscanf(file, "%d %s", &TeamId, MatchScore) != EOF) {
+    int points = 0;
+    for (int i = 0; MatchScore[i] != '\0'; i++) {
+        if (MatchScore[i] == 'W') points += 3;
+        else if (MatchScore[i] == 'D') points += 1;
+    }
+
+        printf("Team %d: %d\n", TeamId, points);
+    }
+    fclose(file);
+
+    return 0;
+}

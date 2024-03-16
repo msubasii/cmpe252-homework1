@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+
+//This is a function method to calculate T
+double Calculation(double length_x, int c, int d) {
+    return pow(length_x, c) + 2 * d;
+}
+
+int main() {
+
+    //get the given unknowns from user
+    int a, b, n, c, d;
+    printf("Enter value of a:\n");
+    scanf("%d", &a);
+    printf("Enter value of b:\n");
+    scanf("%d", &b);
+    printf("Enter value of n:\n");
+    scanf("%d", &n);
+    printf("Enter value of c:\n");
+    scanf("%d", &c);
+    printf("Enter value of d:\n");
+    scanf("%d", &d);
+
+    double sumation,T,length_h,length_x = 0.0;
+    
+    //where I calculate the n subintervals of h.
+    length_h = (double)(b - a) / n;
+
+    length_x = a + length_h; 
+    
+    for (int i = 1; i < n; i++) {
+        sumation += Calculation(length_x, c, d); 
+        length_x += length_h;
+    }
+
+    //Calculation of the T
+    T = (length_h / 2.0) * (Calculation(a, c, d) + Calculation(b, c, d) + 2 * sumation); 
+
+    //Print the result 
+    printf("T: %.2f\n", T);
+    return 0;
+}

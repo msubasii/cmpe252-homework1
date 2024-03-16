@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+
+    float a, b, c;
+    //get the a,b,c and minimum,maximum values from user
+    printf("Enter value of a: ");
+    scanf("%f", &a);
+
+    printf("Enter value of b: ");
+    scanf("%f", &b);
+
+    printf("Enter value of c: ");
+    scanf("%f", &c);
+
+    float d = 10.0;
+    int minimumValue, maximumValue;
+
+    printf("Enter minimum value of x_n: ");
+    scanf("%d", &minimumValue);
+
+    printf("Enter maximum value of x_n: ");
+    scanf("%d", &maximumValue);
+
+    //checking the given condition
+    for (int w = minimumValue; w <= maximumValue; w++) {
+        float dx = d;
+
+        for (int i = 1; i <= w; i++) {
+            
+            //make the given calculation
+              dx = dx * b + (-b + sqrt(b*b - 4*a*c))/(2*a);
+
+        }
+        //print out the asked value
+        printf("x_%d: %.2f\n", w, dx);
+    }
+       return 0;
+}
